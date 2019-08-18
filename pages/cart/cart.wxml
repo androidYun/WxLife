@@ -1,0 +1,35 @@
+<!--pages/cart/ShopCart.wxml-->
+<view class="cart_content">
+    <view wx:for="{{shopCart}}" wx:key="index">
+        <view class="cart_content_item">
+            <van-radio-group value="{{ item.isSelect===false ? 1 : 2 }}" bind:change="onSelectChange">
+                <van-radio name="1"></van-radio>
+            </van-radio-group>
+            <image class="image_url" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+            <view class="cart_right_content">
+                <span class="good_name">{{item.goodName}}</span>
+                <span class="desc">{{item.desc}}</span>
+
+                <view class="price_count">
+                    <span class="price">¥{{item.price}}</span>
+                    <span class="old_price">¥{{item.oldPrice}}</span>
+                    <view class="count">
+                        <van-stepper value="{{ 1 }}" bind:change="onChange"/>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <van-submit-bar
+            price="{{ allPrice }}"
+            button-text="提交订单"
+            bind:submit="submitOrder"
+    >
+        <view class="cart_operation_all_select">
+            <van-radio-group value="false">
+                <van-radio name="1"></van-radio>
+            </van-radio-group>
+            <span class="select_text">全选</span>
+        </view>
+    </van-submit-bar>
+</view>

@@ -1,0 +1,109 @@
+/**index.wxss**/
+
+.reserve_content {
+    margin: 10px 2% 20px 2%;
+    width: 90%;
+    padding: 3%;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, .5);
+}
+
+.order_image {
+    border-radius: 80px;
+    width: 80px;
+    height: 80px;
+}
+
+/*右边描述内容*/
+.reserve_right {
+    margin-left: 10px;
+    display: flex;
+    flex: 1;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/*名字和描述*/
+.reserve_content .good_name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.reserve_content .good_desc {
+    font-size: 14px;
+    color: #999999;
+}
+
+/*价格*/
+.reserve_content .price {
+    font-weight: bold;
+    font-size: 22px;
+    color: #ff3b22;
+}
+
+/*原价*/
+.reserve_content .old_price {
+    font-size: 14px;
+    color: #666666;
+    margin-left: 12px;
+    text-decoration: line-through;
+}
+
+/*派送地址*/
+.reserve_content .address {
+    font-size: 14px;
+    color: #666666;
+}
+
+/*时间*/
+.reserve_right .finish_time_count {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+}
+
+.reserve_right .finish_time_count .finish_time {
+    font-size: 12px;
+    color: #999999;
+}
+
+.reserve_right .reserve_count {
+    font-size: 16px;
+    color: #ff3b22;
+
+}
+
+.reserve_content .add_reserve_div {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+}
+
+.reserve_content .add_reserve {
+    margin-top: 6px;
+    margin-left: 12px;
+    padding: 0px;
+}
+
+/*弹窗布局*/
+.dialog_content {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.dialog_content .name {
+    font-size: 18px;
+    color: #000000;
+}
+
+.dialog_content .buy_count {
+    margin-left: 10px;
+    margin-right: 10px;
+}

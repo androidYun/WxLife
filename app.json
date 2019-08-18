@@ -1,0 +1,105 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/reserve/ReserveList",
+    "pages/cart/cart",
+    "pages/center/center",
+    "pages/home/homeService"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#ddd",
+    "selectedColor": "#1296db",
+    "borderStyle": "white",
+    "backgroundColor": "#f2f2f2",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "搜索",
+        "iconPath": "images/start.png",
+        "selectedIconPath": "images/start.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "预定",
+        "iconPath": "images/start.png",
+        "selectedIconPath": "images/start.png"
+      },
+      {
+        "pagePath": "pages/home/homeService",
+        "text": "家政服务",
+        "iconPath": "images/start.png",
+        "selectedIconPath": "images/start.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/start.png",
+        "selectedIconPath": "images/start.png"
+      },
+      {
+        "pagePath": "pages/center/center",
+        "text": "个人中心",
+        "iconPath": "images/start.png",
+        "selectedIconPath": "images/start.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-action-sheet": "/lib/action-sheet/index",
+    "van-area": "/lib/area/index",
+    "van-badge": "/lib/badge/index",
+    "van-badge-group": "/lib/badge-group/index",
+    "van-button": "/lib/button/index",
+    "van-card": "/lib/card/index",
+    "van-cell": "/lib/cell/index",
+    "van-cell-group": "/lib/cell-group/index",
+    "van-checkbox": "/lib/checkbox/index",
+    "van-checkbox-group": "/lib/checkbox-group/index",
+    "van-col": "/lib/col/index",
+    "van-dialog": "/lib/dialog/index",
+    "van-field": "/lib/field/index",
+    "van-goods-action": "/lib/goods-action/index",
+    "van-goods-action-icon": "/lib/goods-action-icon/index",
+    "van-goods-action-button": "/lib/goods-action-button/index",
+    "van-icon": "/lib/icon/index",
+    "van-loading": "/lib/loading/index",
+    "van-nav-bar": "/lib/nav-bar/index",
+    "van-notice-bar": "/lib/notice-bar/index",
+    "van-notify": "/lib/notify/index",
+    "van-panel": "/lib/panel/index",
+    "van-popup": "/lib/popup/index",
+    "van-progress": "/lib/progress/index",
+    "van-radio": "/lib/radio/index",
+    "van-radio-group": "/lib/radio-group/index",
+    "van-row": "/lib/row/index",
+    "van-search": "/lib/search/index",
+    "van-slider": "/lib/slider/index",
+    "van-stepper": "/lib/stepper/index",
+    "van-steps": "/lib/steps/index",
+    "van-submit-bar": "/lib/submit-bar/index",
+    "van-swipe-cell": "/lib/swipe-cell/index",
+    "van-switch": "/lib/switch/index",
+    "van-switch-cell": "/lib/switch-cell/index",
+    "van-tab": "/lib/tab/index",
+    "van-tabs": "/lib/tabs/index",
+    "van-tabbar": "/lib/tabbar/index",
+    "van-tabbar-item": "/lib/tabbar-item/index",
+    "van-tag": "/lib/tag/index",
+    "van-toast": "/lib/toast/index",
+    "van-transition": "/lib/transition/index",
+    "van-tree-select": "/lib/tree-select/index",
+    "van-datetime-picker": "/lib/datetime-picker/index",
+    "van-rate": "/lib/rate/index",
+    "van-collapse": "/lib/collapse/index",
+    "van-collapse-item": "/lib/collapse-item/index",
+    "van-picker": "/lib/picker/index"
+  }
+}

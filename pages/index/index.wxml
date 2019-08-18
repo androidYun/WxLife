@@ -1,0 +1,43 @@
+<!--index.wxml-->
+<view>
+    <view wx:for="{{reserveList}}" wx:key="index">
+        <view class="reserve_content">
+            <image class="order_image" src="{{item.imageUrl}}"></image>
+            <!--内容-->
+            <view class="reserve_right">
+                <span class="good_name">名字</span>
+                <span class="good_desc">描述</span>
+                <span class="address">派送地址</span>
+                <view>
+                    <span class="price">¥{{item.price}}</span>
+                    <span class="old_price">¥{{item.oldPrice}}</span>
+                </view>
+                <view class="finish_time_count">
+                    <span class="finish_time">结束时间:8月15号 12:30</span>
+                    <span class="reserve_count">预售数量:20{{item.unit}}</span>
+                </view>
+                <view class="add_reserve_div">
+                    <van-button bindtap="reserveGood" data-index="{{index}}" size="small" type="danger"
+                                class="add_reserve">添加预定
+                    </van-button>
+                </view>
+
+            </view>
+        </view>
+    </view>
+    <van-dialog
+            use-slot
+            title="请确认预定商品"
+            show="{{ show }}"
+            show-cancel-button
+            confirm-button-open-type="getUserInfo"
+            bind:close="onClose"
+            bind:confirm="submitGood">
+
+        <view class="dialog_content">
+            <span class="name">{{goodName}}:</span>
+            <van-stepper class="buy_count" value="{{ 1 }}" bind:change="onChangeReserveCount"/>
+            <span>{{unitName}}</span>
+        </view>
+    </van-dialog>
+</view>

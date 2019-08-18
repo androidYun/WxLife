@@ -1,0 +1,7 @@
+<!--pages/reserve/ReserveList.wxml-->
+
+<view>
+<view wx:for="{{array}}">
+  {{index}}: {{item.message}}
+</view>
+</view>

@@ -1,0 +1,83 @@
+/* pages/cart/ShopCart.wxss */
+.cart_content {
+    background-color: #F5F5F5;
+}
+
+.cart_content_item {
+    display: flex;
+    height: 120px;
+    background-color: #FFFFFF;
+    align-items: center;
+    padding: 0px 16px 0px 16px;
+    margin-top: 5px;
+}
+
+.image_url {
+    width: 80px;
+    height: 80px;
+    align-items: center;
+    border-radius: 80px;
+    margin-left: 10px;
+}
+
+.cart_right_content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.cart_right_content .good_name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.cart_right_content .desc {
+    font-size: 16px;
+    color: #999999;
+    margin-top: 3px;
+}
+
+.cart_right_content .price_count {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/*原价*/
+.cart_right_content .price_count .old_price {
+    font-size: 14px;
+    color: #666666;
+    margin-left: 12px;
+    text-decoration: line-through;
+}
+
+/*价格*/
+.cart_right_content .price_count .price {
+    font-weight: bold;
+    font-size: 22px;
+    color: #ff3b22;
+}
+
+/*操作按钮*/
+.cart_right_content .price_count .count {
+    justify-content: flex-end;
+    display: flex;
+    flex: 1;
+}
+
+/*下面操作按钮*/
+.cart_operation_all_select {
+    display: flex;
+    background-color: #FFFFFF;
+    align-items: center;
+    margin-left: 16px;
+}
+
+.cart_operation_all_select .select_text {
+    margin-left: 12px;
+}
+
+
+
