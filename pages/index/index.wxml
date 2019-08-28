@@ -5,16 +5,17 @@
             <image class="order_image" src="{{item.imageUrl}}"></image>
             <!--内容-->
             <view class="reserve_right">
-                <span class="good_name">名字</span>
-                <span class="good_desc">描述</span>
-                <span class="address">派送地址</span>
+                <span class="good_name">{{item.goodName}}</span>
+                <span class="good_desc">{{item.goodDesc}}</span>
+                <span class="address">{{item.address}}</span>
                 <view>
-                    <span class="price">¥{{item.price}}</span>
-                    <span class="old_price">¥{{item.oldPrice}}</span>
+                    <span class="price">¥{{item.goodPrice}}</span>
+                    <span class="old_price">¥{{item.marketPrice}}</span>
+                    <span class="reserve_count">预售数量:{{item.sellOutCount}}{{item.unit}}</span>
                 </view>
                 <view class="finish_time_count">
-                    <span class="finish_time">结束时间:8月15号 12:30</span>
-                    <span class="reserve_count">预售数量:20{{item.unit}}</span>
+                    <span class="finish_time">结束时间:{{item.reserveFinishTime}}</span>
+
                 </view>
                 <view class="add_reserve_div">
                     <van-button bindtap="reserveGood" data-index="{{index}}" size="small" type="danger"
@@ -40,4 +41,5 @@
             <span>{{unitName}}</span>
         </view>
     </van-dialog>
+    <van-toast id="van-toast" />
 </view>

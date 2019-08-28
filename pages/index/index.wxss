@@ -74,6 +74,7 @@
 
 .reserve_right .reserve_count {
     font-size: 16px;
+    margin-left: 20px;
     color: #ff3b22;
 
 }

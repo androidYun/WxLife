@@ -21,33 +21,15 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "搜索",
-        "iconPath": "images/start.png",
-        "selectedIconPath": "images/start.png"
-      },
-      {
-        "pagePath": "pages/logs/logs",
         "text": "预定",
-        "iconPath": "images/start.png",
-        "selectedIconPath": "images/start.png"
-      },
-      {
-        "pagePath": "pages/home/homeService",
-        "text": "家政服务",
-        "iconPath": "images/start.png",
-        "selectedIconPath": "images/start.png"
-      },
-      {
-        "pagePath": "pages/cart/cart",
-        "text": "购物车",
-        "iconPath": "images/start.png",
-        "selectedIconPath": "images/start.png"
+        "iconPath": "images/ic_reserve_normal.png",
+        "selectedIconPath": "images/ic_reserve.png"
       },
       {
         "pagePath": "pages/center/center",
         "text": "个人中心",
-        "iconPath": "images/start.png",
-        "selectedIconPath": "images/start.png"
+        "iconPath": "images/ic_person_normal.png",
+        "selectedIconPath": "images/ic_person_select.png"
       }
     ]
   },

@@ -1,7 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+const apis = require("../../utils/apis");
+const netUtils = require("../../utils/netUtils");
+import Toast from '../../lib/toast/toast';
 Page({
     data: {
         show: false,
@@ -10,52 +12,54 @@ Page({
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         goodName: "",
         unitName: "",
-        reserveList: [
-            {
-                reserveName: "苹果",
-                price: 21.3,
-                oldPrice: 45.7,
-                unit: '斤',
-                imageUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566104373789&di=9c8d0d6afa79784898821f2b0b0c746b&imgtype=0&src=http%3A%2F%2Fwww.chinadaily.com.cn%2Fhqzx%2Fimages%2Fattachement%2Fjpg%2Fsite385%2F20120924%2F00221918200911ca40e52b.jpg"
-
-            }, {
-                reserveName: "苹果",
-                price: 21.3,
-                unit: '斤',
-                imageUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566104373789&di=9c8d0d6afa79784898821f2b0b0c746b&imgtype=0&src=http%3A%2F%2Fwww.chinadaily.com.cn%2Fhqzx%2Fimages%2Fattachement%2Fjpg%2Fsite385%2F20120924%2F00221918200911ca40e52b.jpg"
-            },
-            {
-                reserveName: "苹果",
-                price: 21.3,
-                unit: '斤',
-                imageUrl: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566104373789&di=9c8d0d6afa79784898821f2b0b0c746b&imgtype=0&src=http%3A%2F%2Fwww.chinadaily.com.cn%2Fhqzx%2Fimages%2Fattachement%2Fjpg%2Fsite385%2F20120924%2F00221918200911ca40e52b.jpg"
-            }
-        ],
+        buyCount: 1,
+        index: 0,
+        reserveList: [],
     },
     //事件处理函数
     reserveGood: function (event) {
         let index = event.currentTarget.dataset.index;
         this.setData({
             show: true,
-            goodName: this.data.reserveList[index].reserveName,
-            unitName: this.data.reserveList[index].unit,
-        });
+            index: index,
+            goodName: this.data.reserveList[index].goodName,
+            unitName:
+            this.data.reserveList[index].unit,
+        })
+        ;
 
     },
+
     onClose: function () {
         console.log("eee");
     },
     /*提交数量*/
-    submitGood: function () {
-        console.log("ddd");
+    submitGood: function (event) {
+        let index = this.data.index;
+        let reserveId = this.data.reserveList[index].reserveId;
+        netUtils.post(apis.reserve_order_add, {
+            userId: 1,
+            reserveId: reserveId,
+            buyCount: this.data.buyCount,
+        }).then((response) => {
+            this.setData({
+                buyCount: 0,
+            });
+          Toast("预定成功");
+            this.loadReserveList();
+        }).catch((error) => {
+          Toast(error.msg);
+        })
     },
     onChangeReserveCount(event) {
-        console.log(event.detail)
+        this.setData({
+            buyCount: event.detail
+        });
     },
     onChange(event) {
         this.setData({
             active: event.detail
-        })
+        });
         if (this.data.active === 0) {
             wx.navigateTo({
                 url: "../reserve/ReserveList"
@@ -83,7 +87,7 @@ Page({
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
-                    app.globalData.userInfo = res.userInfo
+                    app.globalData.userInfo = res.userInfo;
                     this.setData({
                         userInfo: res.userInfo,
                         hasUserInfo: true
@@ -91,13 +95,22 @@ Page({
                 }
             })
         }
+        this.loadReserveList();
     },
     getUserInfo: function (e) {
-        console.log(e)
-        app.globalData.userInfo = e.detail.userInfo
+        app.globalData.userInfo = e.detail.userInfo;
         this.setData({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
         })
+    },
+    loadReserveList() {
+        netUtils.get(apis.reserve_good_list, {}).then((response) => {
+            this.setData({
+                reserveList: response.data
+            })
+        }).catch((error) => {
+            console.log("dd" + error.msg)
+        })
     }
-})
+});
