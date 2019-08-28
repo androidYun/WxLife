@@ -1,5 +1,14 @@
 <!--pages/center/center.wxml-->
 <view>
 
+<view class='person_inform'>
+<image class='avatar_image' src='{{userInfo.avatarUrl}}'></image>
 
+  <view class="nickname" class='user_name'>{{userInfo.nickName}}</view>
+<view></view>
+</view>
+<van-cell-group>
+  <van-cell title="预购订单" value="2" is-link />
+
+</van-cell-group>
 </view>
