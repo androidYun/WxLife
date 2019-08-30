@@ -1,0 +1,30 @@
+<view>
+    <view wx:key="index" wx:for="{{reserveOrderList}}" wx:for-item="item">
+        <van-card
+                num="{{item.buyCount}}"
+                price="{{item.goodPrice}}"
+                origin-price="{{item.marketPrice}}"
+                desc="{{item.goodDesc}}"
+                title="{{item.goodName}}"
+                thumb="{{ item.imageUrl }}"
+        >
+            <view slot="footer" wx:if="{{item.orderState==0}}">
+                <van-button type="primary" size="mini" data-index="{{index}}" bindtap="editReserveOrder">编辑</van-button>
+            </view>
+        </van-card>
+    </view>
+    <van-dialog
+            use-slot
+            title="请确认预定商品"
+            show="{{ show }}"
+            show-cancel-button
+            confirm-button-open-type="getUserInfo"
+            bind:confirm="submitGood">
+
+        <view class="dialog_content">
+            <span class="name">{{goodName}}:</span>
+            <van-stepper class="buy_count" value="{{ buyCount }}" bind:change="onChangeReserveCount"/>
+            <span>{{unitName}}</span>
+        </view>
+    </van-dialog>
+</view>

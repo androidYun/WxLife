@@ -1,0 +1,17 @@
+/* pages/reserveorder/ReserveOrder.wxss */
+/*弹窗布局*/
+.dialog_content {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.dialog_content .name {
+    font-size: 18px;
+    color: #000000;
+}
+.dialog_content .buy_count {
+    margin-left: 10px;
+    margin-right: 10px;
+}

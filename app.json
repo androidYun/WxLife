@@ -5,7 +5,8 @@
     "pages/reserve/ReserveList",
     "pages/cart/cart",
     "pages/center/center",
-    "pages/home/homeService"
+    "pages/home/homeService",
+    "pages/reserveorder/ReserveOrder"
   ],
   "window": {
     "backgroundTextStyle": "light",
