@@ -5,7 +5,10 @@
     "pages/reserve/ReserveList",
     "pages/cart/cart",
     "pages/center/center",
-    "pages/home/homeService"
+    "pages/home/homeService",
+    "pages/set/set",
+    "pages/address/address",
+    "pages/address/add/add"
   ],
   "window": {
     "backgroundTextStyle": "light",

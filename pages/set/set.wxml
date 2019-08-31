@@ -1,0 +1,7 @@
+<!--pages/set/set.wxml-->
+<view>
+    <van-cell-group>
+        <van-cell title="查看地址" is-link url="/pages/address/address"/>
+    </van-cell-group>
+
+</view>

@@ -1,0 +1,5 @@
+<!--pages/address/address.wxml-->
+<view>
+    <van-button type="primary" size="large" bindtap="addAddress" >添加地址</van-button>
+
+</view>
