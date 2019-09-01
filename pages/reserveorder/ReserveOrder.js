@@ -38,7 +38,6 @@ Page({
      * @param event
      */
     editReserveOrder: function (event) {
-        console.log("ddd")
         let index = event.currentTarget.dataset.index;
         this.setData(
             {

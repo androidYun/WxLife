@@ -1,0 +1,13 @@
+/* pages/address/add/add.wxss */
+
+.cell_title_value {
+    display: flex;
+}
+
+.cell_title_value .value {
+    margin-left: 20px;
+}
+
+.cell_address {
+    margin-top: 20px;
+}

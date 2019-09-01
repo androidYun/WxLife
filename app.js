@@ -1,8 +1,15 @@
 //app.js
+import stringUtils from './utils/StringUtils';
+import Toast from './lib/toast/toast';
+const apis = require("./utils/apis");
+const netUtils = require("./utils/netUtils");
 App({
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
+    this.stringUtils = new stringUtils()
+    this.apis = apis
+    this.netUtils = netUtils
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
