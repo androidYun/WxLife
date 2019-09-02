@@ -16,23 +16,26 @@ Page({
      * @param event
      */
     submitOrder: function (event) {
-        let orderList = this.data.cartList.map((item) => {
-            if (item.isSelect) {
-                return {
-                    cartId: item.productCart.cartId,
-                    productId: item.productCart.productId,
-                    buyCount: item.productCart.cartCount
-                }
-            }
-        });
-        netUtils.post(apis.order_add, {
-            cartList: orderList,
-            userId: getApp().globalData.userId,
-            totalPrice: 36.0,
-            leaveMessage: "11点才到家"
-        }).then((response) => {
-            console.log("成功了");
-            this.loadCartList();
+        // let orderList = this.data.cartList.map((item) => {
+        //     if (item.isSelect) {
+        //         return {
+        //             cartId: item.productCart.cartId,
+        //             productId: item.productCart.productId,
+        //             buyCount: item.productCart.cartCount
+        //         }
+        //     }
+        // });
+        // netUtils.post(apis.order_add, {
+        //     cartList: orderList,
+        //     userId: getApp().globalData.userId,
+        //     totalPrice: 36.0,
+        //     leaveMessage: "11点才到家"
+        // }).then((response) => {
+        //     console.log("成功了");
+        //     this.loadCartList();
+        // })
+        wx.navigateTo({
+            url:"/pages/order/ConfirmOrder"
         })
     },
     /**
@@ -56,7 +59,7 @@ Page({
             isAllSelect: !this.data.isAllSelect
         })
     },
-    loadCartList: function () {
+    loadCartList() {
         netUtils.get(apis.cart_list, {
             userId: getApp().globalData.userId
         }).then((response) => {
@@ -66,7 +69,9 @@ Page({
             this.setData({
                 cartList: response.data
             });
-
+            this.hideLoading();
+        }).catch((error) => {
+            this.hideLoading();
         })
     },
     /**
@@ -75,7 +80,15 @@ Page({
     onLoad: function (options) {
         this.loadCartList();
     },
-
+    onPullDownRefresh: function () {
+        this.loadCartList();
+    },
+    hideLoading: function () {
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

@@ -1,0 +1,84 @@
+/* pages/order/ConfirmOrder.wxss */
+.order_address_body {
+    background-color: #FFFFFF;
+    padding: 16px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order_address_body .location_inform {
+    display: flex;
+    align-items: center;
+}
+
+.order_address_body .location_inform .name_phone_number {
+    display: flex;
+    margin-left: 20px;
+    justify-content: space-between;
+    font-size: 14px;
+    flex-direction: column;
+    color: #333333;
+}
+
+/*商品列表*/
+.product_detail {
+    margin-top: 15px;
+    padding: 0px 16px;
+    background-color: #FFFFFF;
+}
+
+.product_detail .product_title {
+    width: 100%;
+    display: block;
+    font-size: 14px;
+    color: #333333;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 16px;
+}
+
+.product_detail .produce_list {
+    display: flex;
+    width: 100%;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    justify-content: flex-start;
+}
+
+.product_detail .produce_list .image_url {
+    width: 80px;
+    height: 100px;
+    align-items: center;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.product_detail .produce_list .product_params {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    align-items: flex-start;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.product_detail .produce_list .product_params .good_name_count {
+    display: flex;
+    width: 100%;
+    font-size: 14px;
+    justify-content: space-between;
+}
+
+.product_detail .produce_list .product_params .good_price_market_price {
+    display: flex;
+    width: 100%;
+    font-size: 14px;
+    justify-content: space-between;
+}
+
+.view_line {
+    width: 100%;
+    height: 1px;
+    background-color: #EEEEEE;
+}

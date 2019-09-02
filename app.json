@@ -10,7 +10,7 @@
     "pages/set/set",
     "pages/address/address",
     "pages/address/add/add",
-    "pages/order/Order"
+    "pages/order/ConfirmOrder"
   ],
   "window": {
     "backgroundTextStyle": "light",
