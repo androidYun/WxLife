@@ -13,7 +13,7 @@ Page({
     data: {
 
         address: {
-            userId: 1,
+            userId: getApp().globalData.userId,
             addressId:0,
             userName: "",
             province: "",
@@ -60,7 +60,7 @@ Page({
                         {
                             provinceCityArea: provinceAddress,
                             defaultCity: address.areaId,
-                            'address.userId': 1,
+                            'address.userId': getApp().globalData.userId,
                             'address.addressId': address.addressId,
                             'address.userName': address.userName,
                             'address.province': address.province,

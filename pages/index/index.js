@@ -4,6 +4,7 @@ const app = getApp()
 const apis = require("../../utils/apis");
 const netUtils = require("../../utils/netUtils");
 import Toast from '../../lib/toast/toast';
+
 Page({
     data: {
         show: false,
@@ -25,8 +26,7 @@ Page({
             goodName: this.data.reserveList[index].goodName,
             unitName:
             this.data.reserveList[index].unit,
-        })
-        ;
+        });
 
     },
 
@@ -36,19 +36,21 @@ Page({
     /*提交数量*/
     submitGood: function (event) {
         let index = this.data.index;
+        let userId = getApp().globalData.userId;
+        console.log("内容" + userId);
         let reserveId = this.data.reserveList[index].reserveId;
-        netUtils.post(apis.reserve_order_add, {
-            userId: 1,
-            reserveId: reserveId,
-            buyCount: this.data.buyCount,
+        netUtils.post(apis.reserve_cart_add, {
+            userId: getApp().globalData.userId,
+            productId: reserveId,
+            cardCount: this.data.buyCount,
         }).then((response) => {
             this.setData({
-                buyCount: 0,
+                buyCount: 1,
             });
-          Toast("预定成功");
+            Toast("预定成功");
             this.loadReserveList();
         }).catch((error) => {
-          Toast(error.msg);
+            Toast(error.msg);
         })
     },
     onChangeReserveCount(event) {

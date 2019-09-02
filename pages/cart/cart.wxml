@@ -1,20 +1,19 @@
 <!--pages/cart/ShopCart.wxml-->
 <view class="cart_content">
-    <view wx:for="{{shopCart}}" wx:key="index">
+    <view wx:for="{{cartList}}" wx:key="index">
         <view class="cart_content_item">
-            <van-radio-group value="{{ item.isSelect===false ? 1 : 2 }}" bind:change="onSelectChange">
-                <van-radio name="1"></van-radio>
-            </van-radio-group>
-            <image class="image_url" src="https://img.yzcdn.cn/vant/cat.jpeg"></image>
+            <van-checkbox checked-color="#41b357" value="{{item.isSelect}}" data-index="{{index}}" bind:change="onSelectChange" style="font-size:12px">
+            </van-checkbox>
+            <image class="image_url" src="{{item.reserveGood.imageUrl}}"></image>
             <view class="cart_right_content">
-                <span class="good_name">{{item.goodName}}</span>
-                <span class="desc">{{item.desc}}</span>
+                <span class="good_name">{{item.reserveGood.goodName}}</span>
+                <span class="desc">{{item.reserveGood.goodDesc}}</span>
 
                 <view class="price_count">
-                    <span class="price">¥{{item.price}}</span>
-                    <span class="old_price">¥{{item.oldPrice}}</span>
+                    <span class="price">¥{{item.reserveGood.goodPrice}}</span>
+                    <span class="old_price">¥{{item.reserveGood.marketPrice}}</span>
                     <view class="count">
-                        <van-stepper value="{{ 1 }}" bind:change="onChange"/>
+                        <van-stepper value="{{ item.productCart.cartCount }}" bind:change="onChange"/>
                     </view>
                 </view>
             </view>
@@ -26,9 +25,8 @@
             bind:submit="submitOrder"
     >
         <view class="cart_operation_all_select">
-            <van-radio-group value="false">
-                <van-radio name="1"></van-radio>
-            </van-radio-group>
+            <van-checkbox checked-color="#41b357" value="{{isAllSelect}}" data-index="{{index}}" bind:change="onAllSelect" style="font-size:12px">
+            </van-checkbox>
             <span class="select_text">全选</span>
         </view>
     </van-submit-bar>

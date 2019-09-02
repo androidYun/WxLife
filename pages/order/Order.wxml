@@ -1,0 +1,39 @@
+<!--pages/order/Order.wxml-->
+<view>
+    <view>
+        <view>
+            <span>{{userName}}</span>
+            <span>{{phoneNumber}}</span>
+        </view>
+        <span>{{address}}</span>
+        <van-icon name="arrow"/>
+    </view>
+
+    <view>
+        <span>商品列表</span>
+        <view>
+            <view>
+                <image src=""></image>
+                <view>
+                    <span>{{name}}</span>
+                    <span>{{goodPrice}}{{unitName}}</span>
+                </view>
+                <view>
+                    <span>{{buyCount}}</span>
+                </view>
+            </view>
+
+        </view>
+    </view>
+    <van-cell-group>
+        <van-cell title="配送方式" value="自取"/>
+        <van-field
+                value="{{ message }}"
+                label="备注"
+                type="textarea"
+                placeholder="如有备注请输入"
+                autosize
+                border="{{ false }}"
+        />
+    </van-cell-group>
+</view>

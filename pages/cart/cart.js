@@ -1,4 +1,6 @@
 // pages/cart/ShopCart.js
+const netUtils = getApp().netUtils;
+const apis = getApp().apis;
 Page({
 
     /**
@@ -6,47 +8,72 @@ Page({
      */
     data: {
         allPrice: 0.0,
-        icon: {
-            normal: '//img.yzcdn.cn/icon-normal.png',
-            active: '//img.yzcdn.cn/icon-active.png'
-        },
-        shopCart: [
-            {
-                reserve_id: "",
-                goodName: "苹果",
-                desc: "吃水饺打豆豆",
-                imageUrl: "",
-                price: 21.3,
-                oldPrice: 45.7,
-                count: 0,
-                isSelect: true
-            },
-            {
-                reserve_id: "",
-                goodName: "苹果",
-                desc: "吃水饺打豆豆",
-                imageUrl: "",
-                price: 21.3,
-                oldPrice: 45.7,
-                count: 0,
-                isSelect: false
-            }
-        ]
+        isAllSelect: false,
+        cartList: []
     },
+    /**
+     * 提交订单
+     * @param event
+     */
     submitOrder: function (event) {
-
+        let orderList = this.data.cartList.map((item) => {
+            if (item.isSelect) {
+                return {
+                    cartId: item.productCart.cartId,
+                    productId: item.productCart.productId,
+                    buyCount: item.productCart.cartCount
+                }
+            }
+        });
+        netUtils.post(apis.order_add, {
+            cartList: orderList,
+            userId: getApp().globalData.userId,
+            totalPrice: 36.0,
+            leaveMessage: "11点才到家"
+        }).then((response) => {
+            console.log("成功了");
+            this.loadCartList();
+        })
     },
     /**
      * 选择需要购买的订单
      */
-    onSelectChange() {
+    onSelectChange(event) {
+        let index = event.currentTarget.dataset.index;
+        let list = this.data.cartList;
+        list[index].isSelect = !list[index].isSelect;
+        this.setData({
+            cartList: list
+        })
+    },
+    onAllSelect() {
+        let list = this.data.cartList;
+        list.forEach((item, index) => {
+            list[index].isSelect = !this.data.isAllSelect;
+        });
+        this.setData({
+            cartList: list,
+            isAllSelect: !this.data.isAllSelect
+        })
+    },
+    loadCartList: function () {
+        netUtils.get(apis.cart_list, {
+            userId: getApp().globalData.userId
+        }).then((response) => {
+            if (response.data !== undefined && response.data.length > 0) {
+                response.data[0].isSelect = true
+            }
+            this.setData({
+                cartList: response.data
+            });
 
+        })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.loadCartList();
     },
 
     /**

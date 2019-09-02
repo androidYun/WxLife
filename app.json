@@ -9,7 +9,8 @@
     "pages/reserveorder/ReserveOrder",
     "pages/set/set",
     "pages/address/address",
-    "pages/address/add/add"
+    "pages/address/add/add",
+    "pages/order/Order"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,6 +27,12 @@
       {
         "pagePath": "pages/index/index",
         "text": "预定",
+        "iconPath": "images/ic_reserve_normal.png",
+        "selectedIconPath": "images/ic_reserve.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
         "iconPath": "images/ic_reserve_normal.png",
         "selectedIconPath": "images/ic_reserve.png"
       },
