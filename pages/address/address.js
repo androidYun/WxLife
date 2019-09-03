@@ -44,6 +44,21 @@ Page({
                 addressList: dataList
             })
         }))
+    },
+    selectAddress(event) {
+        let index = event.currentTarget.dataset.index;
+        let pages = getCurrentPages();
+        let prePage = pages[pages.length - 2];
+        let address = this.data.addressList[index];
+        prePage.setData({
+            addressId: address.addressId,
+            userName: address.userName,
+            phoneNumber: address.phoneNumber,
+            address: address.province + address.city + address.area + address.defineAddress
+        })
+        wx.navigateBack({
+            delta: 1
+        })
 
     },
     /**
