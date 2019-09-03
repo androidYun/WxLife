@@ -1,10 +1,10 @@
 /* pages/center/center.wxss */
-.person_inform{
-  display: flex;
-  width: 100%;
-  padding: 20px 16px 20px 16px;
-  background-color: #41b357;
-  align-items: center
+.person_inform {
+    display: flex;
+    width: 100%;
+    padding: 20px 16px 20px 16px;
+    background-color: #FFFFFF;
+    align-items: center
 }
 
 
@@ -14,8 +14,37 @@
     height: 80px;
 }
 
-.person_inform .user_name{
-  color: #FFFFFF;
-  font-size: 14px;
-  margin-left: 16px;
+.person_inform .user_name {
+    color: #333333;
+    font-size: 14px;
+    margin-left: 16px;
+}
+
+.center_line {
+    width: 100%;
+    background-color: #F5F5F5;
+    height: 1px;
+}
+
+.order_item {
+    border-radius: 6px;
+    margin: 10px 16px;
+    background-color: #ffffff;
+}
+
+.order_item .order_type_body {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: space-around;
+}
+
+.order_item .order_type_body .order_type {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.order_item .order_type_body .order_type span {
+    font-size: 14px;
 }

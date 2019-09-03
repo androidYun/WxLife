@@ -2,30 +2,38 @@
 <view class="cart_content">
     <view wx:for="{{cartList}}" wx:key="index">
         <view class="cart_content_item">
-            <van-checkbox checked-color="#41b357" value="{{item.isSelect}}" data-index="{{index}}" bind:change="onSelectChange" style="font-size:12px">
+            <van-checkbox checked-color="#41b357" value="{{item.isSelect}}" data-index="{{index}}"
+                          bind:change="onSelectChange" style="font-size:12px">
             </van-checkbox>
             <image class="image_url" src="{{item.reserveGood.imageUrl}}"></image>
             <view class="cart_right_content">
-                <span class="good_name">{{item.reserveGood.goodName}}</span>
+                <view class="name_delete">
+                    <span class="good_name">{{item.reserveGood.goodName}}</span>
+                    <van-button type="danger" size="mini" data-index="{{index}}"
+                                bindtap="deleteCart">删除
+                    </van-button>
+                </view>
+
                 <span class="desc">{{item.reserveGood.goodDesc}}</span>
 
                 <view class="price_count">
                     <span class="price">¥{{item.reserveGood.goodPrice}}</span>
                     <span class="old_price">¥{{item.reserveGood.marketPrice}}</span>
                     <view class="count">
-                        <van-stepper value="{{ item.productCart.cartCount }}" bind:change="onChange"/>
+                        <van-stepper value="{{ item.productCart.cartCount }}" data-index="{{index}}" bind:change="onProductCountChange"/>
                     </view>
                 </view>
             </view>
         </view>
     </view>
     <van-submit-bar
-            price="{{ allPrice }}"
+            price="{{ totalPrice }}"
             button-text="提交订单"
             bind:submit="submitOrder"
     >
         <view class="cart_operation_all_select">
-            <van-checkbox checked-color="#41b357" value="{{isAllSelect}}" data-index="{{index}}" bind:change="onAllSelect" style="font-size:12px">
+            <van-checkbox checked-color="#41b357" value="{{isAllSelect}}" data-index="{{index}}"
+                          bind:change="onAllSelect" style="font-size:12px">
             </van-checkbox>
             <span class="select_text">全选</span>
         </view>

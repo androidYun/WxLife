@@ -18,8 +18,11 @@
 
                 </view>
                 <view class="add_reserve_div">
-                    <van-button bindtap="reserveGood" data-index="{{index}}" size="small" type="danger"
+                    <van-button bindtap="submitOrder" data-index="{{index}}" size="small" type="danger"
                                 class="add_reserve">添加预定
+                    </van-button>
+                    <van-button bindtap="submitCart" data-index="{{index}}" size="small" type="danger"
+                                class="add_reserve">添加购物车
                     </van-button>
                 </view>
 
@@ -41,5 +44,5 @@
             <span>{{unitName}}</span>
         </view>
     </van-dialog>
-    <van-toast id="van-toast" />
+    <van-toast id="van-toast"/>
 </view>

@@ -15,12 +15,14 @@ Page({
         unitName: "",
         buyCount: 1,
         index: 0,
+        submitType: 0, //0是添加购物车  1 是添加订单
         reserveList: [],
     },
     //事件处理函数
-    reserveGood: function (event) {
+    submitOrder: function (event) {
         let index = event.currentTarget.dataset.index;
         this.setData({
+            submitType: 1,
             show: true,
             index: index,
             goodName: this.data.reserveList[index].goodName,
@@ -29,29 +31,44 @@ Page({
         });
 
     },
+    //事件处理函数
+    submitCart: function (event) {
+        let index = event.currentTarget.dataset.index;
+        this.setData({
+            submitType: 0,
+            show: true,
+            index: index,
+            goodName: this.data.reserveList[index].goodName,
+            unitName:
+            this.data.reserveList[index].unit,
+        });
 
+    },
     onClose: function () {
         console.log("eee");
     },
     /*提交数量*/
     submitGood: function (event) {
         let index = this.data.index;
-        let userId = getApp().globalData.userId;
-        console.log("内容" + userId);
         let reserveId = this.data.reserveList[index].reserveId;
-        netUtils.post(apis.reserve_cart_add, {
-            userId: getApp().globalData.userId,
-            productId: reserveId,
-            cardCount: this.data.buyCount,
-        }).then((response) => {
-            this.setData({
-                buyCount: 1,
-            });
-            Toast("预定成功");
-            this.loadReserveList();
-        }).catch((error) => {
-            Toast(error.msg);
-        })
+        if (this.data.submitType === 0) {
+            netUtils.post(apis.reserve_cart_add, {
+                userId: getApp().globalData.userId,
+                productId: reserveId,
+                cartCount: this.data.buyCount,
+            }).then((response) => {
+                this.setData({
+                    buyCount: 1,
+                });
+                this.loadReserveList();
+            }).catch((error) => {
+                Toast(error.msg);
+            })
+        } else {
+            wx.navigateTo({
+                url: "../order/ConfirmOrder?addOrderType=" + 1 + "&buyCount=" + this.data.buyCount + "&productId=" + reserveId
+            })
+        }
     },
     onChangeReserveCount(event) {
         this.setData({
@@ -67,8 +84,6 @@ Page({
                 url: "../reserve/ReserveList"
             });
         }
-
-        console.log(event.detail);
     },
     onLoad: function () {
         if (app.globalData.userInfo) {

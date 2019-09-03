@@ -1,0 +1,50 @@
+<!--pages/order/ConfirmOrder.wxml-->
+<view>
+    <view class="order_address_body">
+        <view class="location_inform">
+            <van-icon name="location"/>
+            <view class="name_phone_number">
+                <span>{{userName}} {{phoneNumber}}</span>
+                <span>{{address}}</span>
+            </view>
+        </view>
+        <van-icon name="arrow"/>
+    </view>
+
+    <view class="product_detail">
+        <span class="product_title">商品列表</span>
+        <view class="view_line"></view>
+        <view wx:for="{{productList}}"  wx:key="index" wx:item="item">
+            <view class="produce_list">
+                <image class="image_url" src="{{item.imageUrl}}"></image>
+                <View class="product_params">
+                    <view class="good_name_count">
+                        <span>{{item.goodName}}</span>
+                        <span>X{{item.buyCount}}</span>
+                    </view>
+                    <view class="good_price_market_price">
+                        <span>单价:{{item.goodPrice}}</span>
+                        <span>市场价:{{item.marketPrice}}</span>
+                    </view>
+                </View>
+            </view>
+            <view class="view_line"></view>
+        </view>
+    </view>
+    <van-cell-group>
+        <van-cell title="配送方式" value="自取"/>
+        <van-field
+                value="{{ leaveMessage }}"
+                label="备注"
+                type="textarea"
+                placeholder="如有备注请输入"
+                autosize
+                border="{{ false }}"
+        />
+    </van-cell-group>
+    <van-submit-bar
+            price="{{ totalPrice }}"
+            button-text="提交订单"
+            bind:submit="submitOrder"
+    />
+</view>

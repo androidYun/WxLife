@@ -27,6 +27,11 @@
     margin-left: 10px;
 }
 
+.cart_right_content .name_delete {
+    display: flex;
+    justify-content: space-between;
+}
+
 .cart_right_content .good_name {
     font-size: 24px;
     font-weight: bold;

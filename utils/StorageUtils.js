@@ -1,20 +1,14 @@
 module.exports = {
     setUserId(userId) {
-        wx.setStorage({
-            key: "userId",
-            data: userId
-        })
+        wx.setStorageSync("userId", userId)
     },
     getUserId() {
-        return new Promise((resolve, reject) => {
-            wx.getStorage({
-                key: 'userId',
-                success(res) {
-                    resolve(res.data)
-                }
-            })
-        })
-
-    }
-
+        return wx.getStorageSync("userId")
+    },
+    setToken(token) {
+        wx.setStorageSync("token", token)
+    },
+    getToken() {
+        return wx.getStorageSync("token")
+    },
 }

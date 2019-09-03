@@ -18,16 +18,13 @@ App({
         // 登录
         wx.login({
             success: res => {
-                console.log("日志" + res);
                 netUtils.get(apis.wx_login, {
                     code: res.code
                 }).then((response) => {
                     storageUtils.setUserId(response.data.userId);
                     this.globalData.userId = response.data.userId;
-                    storageUtils.getUserId().then((response) => {
-                        console.log("ddd" + response)
-                    })
-
+                    console.log("dddddd" + response.data.token)
+                    storageUtils.setToken(response.data.token);
                 })
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
             }
@@ -55,6 +52,15 @@ App({
     },
     globalData: {
         userInfo: null,
-        userId: ""
+        userId: storageUtils.getUserId(),
+        token: storageUtils.getToken()
     }
-})
+});
+wx.switchTab({
+    url: "pages/cart/cart",
+    success(res) {
+        let page = getCurrentPages().pop();
+        if(page === undefined || page === null) return;
+        page.load(page.data.options);
+    }
+});

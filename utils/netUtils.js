@@ -1,9 +1,15 @@
+const storageUtils = require("../utils/StorageUtils");
 module.exports = {
+
     get(url, data) {
         return new Promise((resolve, reject) => {
             wx.request({
                 url: url,
                 data: data,
+                header: {
+                    'content-type': 'application/json;charset=urf-8', // 默认值
+                    "token": storageUtils.getToken()
+                },
                 method: "GET",
                 success: function (response) {
                     if (response.statusCode === 200 && response.data.code === 200) {
@@ -28,9 +34,10 @@ module.exports = {
         return new Promise((resolve, reject) => {
             wx.request({
                 url: url,
-                data: data,
+                data: JSON.stringify(data),
                 header: {
-                    'content-type': 'application/json;charset=urf-8' // 默认值
+                    'content-type': 'application/json;charset=urf-8', // 默认值
+                    "token": storageUtils.getToken()
                 },
                 method: "POST",
                 success: function (response) {
