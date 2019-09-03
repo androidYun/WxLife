@@ -111,8 +111,18 @@ Page({
             this.setData({
                 reserveList: response.data
             })
+            this.hideLoading();
         }).catch((error) => {
-            console.log("dd" + error.msg)
+            this.hideLoading();
         })
+    },
+    onPullDownRefresh: function () {
+        this.loadReserveList();
+    },
+    hideLoading: function () {
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
     }
 });
