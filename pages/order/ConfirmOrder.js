@@ -29,7 +29,7 @@ Page({
                 buyCount: item.buyCount,
             }
         });
-        if (this.addOrderType === 0) {
+        if (this.data.addOrderType === 0) {
             netUtils.post(apis.order_add, {
                 cartList: orderList,
                 userId: getApp().globalData.userId,
@@ -37,6 +37,9 @@ Page({
                 leaveMessage: this.data.leaveMessage
             }).then((response) => {
 
+                wx.redirectTo({
+                    url: "/pages/orderlist/orderlist?active=" + 0
+                })
             })
         } else {
             netUtils.post(apis.order_add_good, {
@@ -46,7 +49,9 @@ Page({
                 totalPrice: this.data.totalPrice,
                 leaveMessage: this.data.leaveMessage
             }).then((response) => {
-
+                wx.redirectTo({
+                    url: "/pages/orderlist/orderlist?active=" + active
+                })
             })
         }
 

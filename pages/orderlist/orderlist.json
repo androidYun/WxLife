@@ -1,6 +1,6 @@
 {
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "order_item": "/pages/component/orderitem"
+    "order_item": "/pages/component/orderitem/orderitem"
   }
 }

@@ -2,17 +2,17 @@
 <view>
     <van-tabs active="{{ active }}" bind:change="onChangeTab">
         <van-tab title="新订单">
-            <order_item order_status="0"></order_item>
+            <order_item order_status="0" id="newOrder"></order_item>
         </van-tab>
-<!--        <van-tab title="待派送">-->
-<!--            <order_item order_status="0"></order_item>-->
-<!--        </van-tab>-->
-<!--        <van-tab title="已完成">-->
-<!--            <order_item order_status="0"></order_item>-->
-<!--        </van-tab>-->
-<!--        <van-tab title="已取消">-->
-<!--            <order_item order_status="0"></order_item>-->
-<!--        </van-tab>-->
+        <van-tab title="待派送">
+            <order_item order_status="1" id="waitDelivery"></order_item>
+        </van-tab>
+        <van-tab title="已完成">
+            <order_item order_status="2" id="finishOrder"></order_item>
+        </van-tab>
+        <van-tab title="已取消">
+            <order_item order_status="3" id="alreadyCancel"></order_item>
+        </van-tab>
     </van-tabs>
 
 </view>

@@ -37,9 +37,9 @@ Page({
         let dataList = this.data.addressList;
         netUtils.get(apis.address_set_default + "/" + addressId).then((response => {
             dataList.map((item) => {
-                item.isDefault = false;
+                item.default = false;
             })
-            dataList[index].isDefault = true;
+            dataList[index].default = true;
             this.setData({
                 addressList: dataList
             })
@@ -61,10 +61,7 @@ Page({
         })
 
     },
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
+    loadAddressList() {
         netUtils.get(apis.address_list, {userId: 1}).then((response => {
             this.setData(
                 {
@@ -72,6 +69,12 @@ Page({
                 }
             )
         }))
+    },
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function (options) {
+        this.loadAddressList();
     },
 
     /**
@@ -85,7 +88,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+        this.loadAddressList()
     },
 
     /**
