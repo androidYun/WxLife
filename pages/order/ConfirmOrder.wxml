@@ -19,11 +19,11 @@
                 <image class="image_url" src="{{item.imageUrl}}"></image>
                 <View class="product_params">
                     <view class="good_name_count">
-                        <span>{{item.goodName}}</span>
+                        <span>{{item.productName}}</span>
                         <span>X{{item.buyCount}}</span>
                     </view>
                     <view class="good_price_market_price">
-                        <span>单价:{{item.goodPrice}}</span>
+                        <span>单价:{{item.productPrice}}</span>
                         <span>市场价:{{item.marketPrice}}</span>
                     </view>
                 </View>

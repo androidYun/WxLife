@@ -6,7 +6,7 @@ Page({
      */
     data: {
         show: false,
-        goodName: "",
+        productName: "",
         goodUnit: "",
         buyCount: 1,
         operationIndex: 0,
@@ -15,9 +15,9 @@ Page({
                 orderState: 0,
                 goodUnit: "个",
                 buyCount: 10,
-                goodName: "香蕉",
-                goodDesc: "香蕉大又甜",
-                goodPrice: 3,
+                productName: "香蕉",
+                productDesc: "香蕉大又甜",
+                productPrice: 3,
                 marketPrice: 5,
                 imageUrl: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1487351610,315303232&fm=26&gp=0.jpg"
             },
@@ -25,9 +25,9 @@ Page({
             orderState: 1,
             goodUnit: "个",
             buyCount: 10,
-            goodName: "香蕉",
-            goodDesc: "香蕉大又甜",
-            goodPrice: 3,
+            productName: "香蕉",
+            productDesc: "香蕉大又甜",
+            productPrice: 3,
             marketPrice: 5,
             imageUrl: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1487351610,315303232&fm=26&gp=0.jpg"
           }
@@ -43,7 +43,7 @@ Page({
             {
                 operationIndex: index,
                 show: true,
-                goodName: this.data.reserveOrderList[index].goodName,
+                productName: this.data.reserveOrderList[index].productName,
                 goodUnit: this.data.reserveOrderList[index].goodUnit,
                 buyCount: this.data.reserveOrderList[index].buyCount,
             }

@@ -118,7 +118,7 @@ Page({
         let totalPrice = 0.0;
         cartList.map((item) => {
             if (item.isSelect) {
-                totalPrice = item.reserveGood.goodPrice * item.productCart.cartCount + totalPrice;
+                totalPrice = item.productDetail.productPrice * item.productCart.cartCount + totalPrice;
             }
         });
         return totalPrice * 100;

@@ -82,8 +82,8 @@ Page({
         netUtils.get(apis.reserve_good_detail + "/" + productId).then((response) => {
             let list = [];
             list[0] = {
-                goodName: response.data.goodName,
-                goodPrice: response.data.goodPrice,
+                productName: response.data.productName,
+                productPrice: response.data.productPrice,
                 productId: response.data.productId,
                 marketPrice: response.data.marketPrice,
                 buyCount: buyCount,
@@ -125,13 +125,13 @@ Page({
             }
             let list = response.data.map((item) => {
                 return {
-                    goodName: item.reserveGood.goodName,
-                    goodPrice: item.reserveGood.goodPrice,
-                    productId: item.reserveGood.productId,
+                    productName: item.productDetail.productName,
+                    productPrice: item.productDetail.productPrice,
+                    productId: item.productDetail.productId,
                     cartId: item.productCart.cartId,
-                    marketPrice: item.reserveGood.marketPrice,
+                    marketPrice: item.productDetail.marketPrice,
                     buyCount: item.productCart.cartCount,
-                    imageUrl: item.reserveGood.imageUrl
+                    imageUrl: item.productDetail.imageUrl
                 }
             });
             let totalPrice = this.getSelectTotalPrice(list);
@@ -160,7 +160,7 @@ Page({
     getSelectTotalPrice(cartList) {
         let totalPrice = 0.0;
         cartList.map((item) => {
-            totalPrice = item.goodPrice * item.buyCount + totalPrice;
+            totalPrice = item.productPrice * item.buyCount + totalPrice;
         });
         return totalPrice * 100;
     },

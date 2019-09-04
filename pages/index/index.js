@@ -11,7 +11,7 @@ Page({
         userInfo: {},
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        goodName: "",
+        productName: "",
         unitName: "",
         buyCount: 1,
         index: 0,
@@ -25,7 +25,7 @@ Page({
             submitType: 1,
             show: true,
             index: index,
-            goodName: this.data.reserveList[index].goodName,
+            productName: this.data.reserveList[index].productName,
             unitName:
             this.data.reserveList[index].unit,
         });
@@ -38,7 +38,7 @@ Page({
             submitType: 0,
             show: true,
             index: index,
-            goodName: this.data.reserveList[index].goodName,
+            productName: this.data.reserveList[index].productName,
             unitName:
             this.data.reserveList[index].unit,
         });
@@ -50,11 +50,11 @@ Page({
     /*提交数量*/
     submitGood: function (event) {
         let index = this.data.index;
-        let reserveId = this.data.reserveList[index].reserveId;
+        let productId = this.data.reserveList[index].productId;
         if (this.data.submitType === 0) {
             netUtils.post(apis.reserve_cart_add, {
                 userId: getApp().globalData.userId,
-                productId: reserveId,
+                productId: productId,
                 cartCount: this.data.buyCount,
             }).then((response) => {
                 this.setData({
@@ -66,7 +66,7 @@ Page({
             })
         } else {
             wx.navigateTo({
-                url: "../order/ConfirmOrder?addOrderType=" + 1 + "&buyCount=" + this.data.buyCount + "&productId=" + reserveId
+                url: "../order/ConfirmOrder?addOrderType=" + 1 + "&buyCount=" + this.data.buyCount + "&productId=" + productId
             })
         }
     },

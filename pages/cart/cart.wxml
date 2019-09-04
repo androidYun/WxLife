@@ -5,20 +5,20 @@
             <van-checkbox checked-color="#41b357" value="{{item.isSelect}}" data-index="{{index}}"
                           bind:change="onSelectChange" style="font-size:12px">
             </van-checkbox>
-            <image class="image_url" src="{{item.reserveGood.imageUrl}}"></image>
+            <image class="image_url" src="{{item.productDetail.imageUrl}}"></image>
             <view class="cart_right_content">
                 <view class="name_delete">
-                    <span class="good_name">{{item.reserveGood.goodName}}</span>
+                    <span class="good_name">{{item.productDetail.productName}}</span>
                     <van-button type="danger" size="mini" data-index="{{index}}"
                                 bindtap="deleteCart">删除
                     </van-button>
                 </view>
 
-                <span class="desc">{{item.reserveGood.goodDesc}}</span>
+                <span class="desc">{{item.productDetail.productDesc}}</span>
 
                 <view class="price_count">
-                    <span class="price">¥{{item.reserveGood.goodPrice}}</span>
-                    <span class="old_price">¥{{item.reserveGood.marketPrice}}</span>
+                    <span class="price">¥{{item.productDetail.productPrice}}</span>
+                    <span class="old_price">¥{{item.productDetail.marketPrice}}</span>
                     <view class="count">
                         <van-stepper value="{{ item.productCart.cartCount }}" data-index="{{index}}" bind:change="onProductCountChange"/>
                     </view>

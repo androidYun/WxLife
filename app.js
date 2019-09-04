@@ -57,10 +57,10 @@ App({
     }
 });
 wx.switchTab({
-    url: "pages/cart/cart",
+  url: "pages/index/index",
     success(res) {
         let page = getCurrentPages().pop();
         if(page === undefined || page === null) return;
-        page.load(page.data.options);
+        page.onLoad(page.data.options);
     }
 });

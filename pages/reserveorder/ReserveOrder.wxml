@@ -2,10 +2,10 @@
     <view wx:key="index" wx:for="{{reserveOrderList}}" wx:for-item="item">
         <van-card
                 num="{{item.buyCount}}"
-                price="{{item.goodPrice}}"
+                price="{{item.productPrice}}"
                 origin-price="{{item.marketPrice}}"
-                desc="{{item.goodDesc}}"
-                title="{{item.goodName}}"
+                desc="{{item.productDesc}}"
+                title="{{item.productName}}"
                 thumb="{{ item.imageUrl }}"
         >
             <view slot="footer" wx:if="{{item.orderState==0}}">
@@ -22,7 +22,7 @@
             bind:confirm="submitGood">
 
         <view class="dialog_content">
-            <span class="name">{{goodName}}:</span>
+            <span class="name">{{productName}}:</span>
             <van-stepper class="buy_count" value="{{ buyCount }}" bind:change="onChangeReserveCount"/>
             <span>{{unitName}}</span>
         </view>
