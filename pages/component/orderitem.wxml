@@ -1,0 +1,39 @@
+<!--component/orderitem.wxml-->
+<view class="order_item_content" wx:for="{{orderList}}" wx:key="index" wx:item="item">
+    <view class="order_time_order_status">
+        <span class="order_time">下单时间:{{item.orderTime}}</span>
+        <span class="order_status">{{item.name}}</span>
+    </view>
+    <view class="view_line"></view>
+    <view class="order_number">
+        <span>订单号{{item.orderNumber}}</span>
+        <span>{{item.imageList}}</span>
+    </view>
+    <view class="view_line"></view>
+    <view class="order_good_image">
+        <block wx:for="{{item.productImageList}}" wx:key="imageIndex" wx:for-item="imageItem">
+            <view class="good_image_url">
+                <image style="width:60px;height:60px" src="{{imageItem}}"></image>
+            </view>
+        </block>
+    </view>
+    <view class="view_line"></view>
+    <view class="price_operation">
+        <span class="price">合计:¥{{item.totalPrice}}</span>
+        <view>
+            <view wx:if="{{item.orderStatus===0}}">
+                <van-button type="danger" size="mini">取消订单</van-button>
+            </view>
+            <view wx:elif="{{item.orderStatus===1}}">
+                <van-button type="danger" size="mini">申请取消</van-button>
+            </view>
+            <view wx:elif="{{item.orderStatus===2}}">
+                <van-button type="danger" size="mini">评价</van-button>
+            </view>
+            <view wx:elif="{{item.orderStatus===3}}">
+                <van-button type="danger" size="mini">删除订单</van-button>
+            </view>
+        </view>
+    </view>
+    <view class="view_line_5"></view>
+</view>

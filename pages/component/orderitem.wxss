@@ -1,0 +1,72 @@
+/* component/orderitem.wxss */
+/* pages/orderlist/orderlist.wxss */
+.order_item_content {
+    background-color: #FFFFFF;
+    padding: 0px 16px;
+}
+
+.order_item_content .order_time_order_status {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
+}
+
+.order_item_content .order_time_order_status .order_time {
+    font-size: 14px;
+    color: #333333;
+}
+
+.order_item_content .order_time_order_status .order_status {
+    font-size: 14px;
+    color: #41b357;
+}
+
+.order_item_content .order_number {
+    height: 40px;
+    align-items: center;
+    display: flex;
+    font-size: 14px;
+    color: #333333;
+}
+
+.order_item_content .order_good_image {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.order_item_content .order_good_image .good_image_url {
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 25%;
+}
+
+.order_item_content .price_operation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    align-items: center;
+}
+.order_item_content .price_operation .price{
+    color: #ff232d;
+    font-size: 16px;
+}
+
+.view_line {
+    background-color: #F5F5F5;
+    width: 100%;
+    height: 1px;
+}
+
+.view_line_5 {
+    background-color: #F5F5F5;
+    width: 100%;
+    height: 5px;
+}

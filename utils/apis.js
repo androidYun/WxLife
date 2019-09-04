@@ -1,4 +1,4 @@
-const base_url = "http://localhost:8084/api/";
+const base_url = "http://106.13.40.231:8084/api/";
 module.exports = {
     wx_login: base_url + "wx/login",//预购商品列表
     reserve_good_list: base_url + "reserve/list",//预购商品列表
@@ -22,5 +22,7 @@ module.exports = {
     address_delete: base_url + "address/delete",//删除地址
     address_set_default: base_url + "address/default",//删除地址
     address_update: base_url + "address/update",//更新
+    /*订单接口*/
+    order_list: base_url + "order/list"//获取订单列表
 
 };

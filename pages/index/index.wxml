@@ -5,16 +5,16 @@
             <image class="order_image" src="{{item.imageUrl}}"></image>
             <!--内容-->
             <view class="reserve_right">
-                <span class="good_name">{{item.goodName}}</span>
-                <span class="good_desc">{{item.goodDesc}}</span>
+                <span class="good_name">{{item.productName}}</span>
+                <span class="good_desc">{{item.productDesc}}</span>
                 <span class="address">{{item.address}}</span>
                 <view>
-                    <span class="price">¥{{item.goodPrice}}</span>
+                    <span class="price">¥{{item.productPrice}}</span>
                     <span class="old_price">¥{{item.marketPrice}}</span>
                     <span class="reserve_count">预售数量:{{item.sellOutCount}}{{item.unit}}</span>
                 </view>
                 <view class="finish_time_count">
-                    <span class="finish_time">结束时间:{{item.reserveFinishTime}}</span>
+                    <span class="finish_time">结束时间:{{item.productFinishTime}}</span>
 
                 </view>
                 <view class="add_reserve_div">
@@ -39,7 +39,7 @@
             bind:confirm="submitGood">
 
         <view class="dialog_content">
-            <span class="name">{{goodName}}:</span>
+            <span class="name">{{productName}}:</span>
             <van-stepper class="buy_count" value="{{ 1 }}" bind:change="onChangeReserveCount"/>
             <span>{{unitName}}</span>
         </view>
