@@ -2,7 +2,7 @@
 <view>
     <van-button type="primary" size="large" bindtap="addAddress">添加地址</van-button>
     <view wx:for="{{addressList}}" wx:key="index" wx:for-item="item">
-        <view class="address_body">
+        <view class="address_body" bindtap="selectAddress" data-index="{{index}}">
             <view class="user_inform">
                 <span>{{item.userName}}</span>
                 <span>{{item.phoneNumber}}</span>

@@ -5,7 +5,12 @@ Page({
      * 页面的初始数据
      */
     data: {
-        active: 1
+        active: 0,
+        orderTime: "2019-09-03 23:15:16",
+        orderStatus: "待支付",
+        orderNumber: "11666644556666",
+        imageUrlList: ["https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2121206715,2955288754&fm=26&gp=0.jpg", "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2121206715,2955288754&fm=26&gp=0.jpg", "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2121206715,2955288754&fm=26&gp=0.jpg", "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2121206715,2955288754&fm=26&gp=0.jpg"],
+        totalPrice: 963.56
     },
     onChangeTab: function (event) {
         wx.showToast({

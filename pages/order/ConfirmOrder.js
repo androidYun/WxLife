@@ -16,6 +16,7 @@ Page({
         addOrderType: 0,//添加订单类型 0 是从购物车添加  1 从订单直接添加
         buyCount: 0,
         productId: 0,
+        addressId: 0
     },
     submitOrder: function () {
         if (this.data.productList === 0 || this.data.productList === undefined) {
@@ -49,6 +50,11 @@ Page({
             })
         }
 
+    },
+    selectAddress: function () {
+        wx.navigateTo({
+            url: "/pages/address/address"
+        })
     },
     /**
      * 生命周期函数--监听页面加载

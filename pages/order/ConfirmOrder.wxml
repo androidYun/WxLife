@@ -1,7 +1,7 @@
 <!--pages/order/ConfirmOrder.wxml-->
 <view>
     <view class="order_address_body">
-        <view class="location_inform">
+        <view class="location_inform" bindtap="selectAddress">
             <van-icon name="location"/>
             <view class="name_phone_number">
                 <span>{{userName}} {{phoneNumber}}</span>
