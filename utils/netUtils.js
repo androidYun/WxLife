@@ -36,10 +36,11 @@ module.exports = {
                 url: url,
                 data: JSON.stringify(data),
                 header: {
-                  'content-type': 'application/json;charset=utf-8', // 默认值
+                    'content-type': 'application/json;charset=utf-8', // 默认值
                     "token": storageUtils.getToken()
                 },
                 method: "POST",
+
                 success: function (response) {
                     if (response.statusCode === 200 && response.data.code === 200) {
                         resolve(response.data);

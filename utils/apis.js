@@ -3,6 +3,7 @@ module.exports = {
     wx_login: base_url + "wx/login",//预购商品列表
     reserve_good_list: base_url + "reserve/list",//预购商品列表
     reserve_good_detail: base_url + "reserve",//预购商品列表
+    product_list: base_url + "reserve/productList",//预购商品列表
     order_add: base_url + "order/add",//添加预购订单
     order_add_good: base_url + "order/addGood",//直接添加到订单
     community_list: base_url + "community/listDetail",//社区列表

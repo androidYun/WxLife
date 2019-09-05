@@ -50,11 +50,11 @@ Page({
     /*提交数量*/
     submitGood: function (event) {
         let index = this.data.index;
-        let productId = this.data.reserveList[index].productId;
+        let productDetail = this.data.reserveList[index];
         if (this.data.submitType === 0) {
             netUtils.post(apis.reserve_cart_add, {
                 userId: getApp().globalData.userId,
-                productId: productId,
+                productId: productDetail.productId,
                 cartCount: this.data.buyCount,
             }).then((response) => {
                 this.setData({
@@ -65,8 +65,18 @@ Page({
                 Toast(error.msg);
             })
         } else {
+            let productList = [];
+            productList.push({
+                productId: productDetail.productId,
+                buyCount: this.data.buyCount,
+                productName: productDetail.productName,
+                productPrice: productDetail.productPrice,
+                marketPrice: productDetail.marketPrice,
+                imageUrl: productDetail.imageUrl
+            })
+            let orderModelJson = JSON.stringify(productList);
             wx.navigateTo({
-                url: "../order/ConfirmOrder?addOrderType=" + 1 + "&buyCount=" + this.data.buyCount + "&productId=" + productId
+                url: "../order/ConfirmOrder?addOrderType=" + 1 + "&productList=" + encodeURIComponent(orderModelJson)
             })
         }
     },

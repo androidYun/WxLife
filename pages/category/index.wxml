@@ -1,0 +1,45 @@
+<!--pages/component/index.wxml-->
+<view>
+    <van-row>
+        <van-col span="3">
+            <view wx:for="{{categoryList}}" wx:key="index" wx:item="item">
+                <view class="category_body" bindtap="selectCategory" data-index="{{index}}">
+                    <view class="select_line" wx:if="{{index===selectCategoryIndex}}"></view>
+                    <span class="{{index===selectCategoryIndex?'select_category':'normal_category'}}">{{item.categoryName}}</span>
+                </view>
+            </view>
+        </van-col>
+        <van-col span="21">
+            <span class="category_name">{{categoryName}}</span>
+            <view wx:for="{{productList}}" wx:key="index" wx:item="item">
+                <view class="category_product_body">
+                    <image class="product_image_url"
+                           src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1487351610,315303232&fm=26&gp=0.jpg"></image>
+                    <view class="product_detail">
+                        <span class="product_name">{{item.productName}}</span>
+                        <view class="price">
+                            <span class="product_price">¥{{item.productPrice}}</span>
+                            <span class="market_price">¥{{item.productPrice}}</span>
+                        </view>
+                        <view class="sell_out_cart">
+                            <van-tag class="sell_out" plain type="success" size="mini">已售{{item.sellCount}}</van-tag>
+                            <van-stepper value="{{ 0 }}" min="0" integer disable-input data-index="{{index}}"
+                                         bind:change="changeProductCount"/>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </van-col>
+    </van-row>
+    <view class="buy_count_total_price_add_order">
+        <view class="buy_count_total_price">
+            <view>
+                <van-icon name="cart-o" color="#41b357"></van-icon>
+                <span class="buy_count">{{totalCount}}</span>
+            </view>
+            <span class="total_price">总计:{{totalPrice}}</span>
+        </view>
+        <button class="payment_btn" bindtap="addProductOrder">下单</button>
+    </view>
+
+</view>
