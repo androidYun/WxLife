@@ -28,14 +28,14 @@ Page({
         }],
         productList: [
             {
-                productId: 1,
+                productId: 26,
                 productName: "苹果",
                 productPrice: 56.0,
                 marketPrice: 65.0,
                 sellCount: 32,
                 imageUrl: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1487351610,315303232&fm=26&gp=0.jpg"
             }, {
-                productId: 1,
+                productId: 4,
                 productName: "苹果",
                 productPrice: 56.0,
                 marketPrice: 65.0,
@@ -69,12 +69,19 @@ Page({
         let productDetail = this.data.productList[index];
         let isAlreadyObject = this.isAlreadyAdd(addProductList, productDetail.productId);
         if (isAlreadyObject.isAlready) {
-            addProductList[isAlreadyObject.index].buyCount = count
+            if (count === 0) {
+                delete addProductList[isAlreadyObject.index];
+            } else {
+                addProductList[isAlreadyObject.index].buyCount = count;
+            }
         } else {
             addProductList.push({
                 buyCount: count,
                 productId: productDetail.productId,
                 productPrice: productDetail.productPrice,
+                imageUrl: productDetail.imageUrl,
+                productName: productDetail.productName,
+                marketPrice: productDetail.marketPrice,
             })
         }
 
@@ -89,8 +96,9 @@ Page({
 
     addProductOrder(event) {
         let productList = this.data.addProductList;
+        let orderModelJson = JSON.stringify(productList);
         wx.navigateTo({
-            url: "../order/ConfirmOrder?addOrderType=" + 1 + "&productList=" + productList
+            url: "../order/ConfirmOrder?addOrderType=" + 1 + "&productList=" + encodeURIComponent(orderModelJson)
         })
     },
 

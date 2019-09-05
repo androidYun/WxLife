@@ -15,7 +15,6 @@ Page({
         productList: [],
         addOrderType: 0,//添加订单类型 0 是从购物车添加  1 从订单直接添加
         buyCount: 0,
-        productId: 0,
         addressId: 0
     },
     submitOrder: function () {
@@ -36,14 +35,19 @@ Page({
                 totalPrice: this.data.totalPrice,
                 leaveMessage: this.data.leaveMessage
             }).then((response) => {
-
                 wx.redirectTo({
                     url: "/pages/orderlist/orderlist?active=" + 0
                 })
             })
         } else {
+            let productIdList = this.data.productList.map((item) => {
+                return {
+                    productId: item.productId,
+                    buyCount: item.buyCount
+                };
+            })
             netUtils.post(apis.order_add_good, {
-                productId: this.data.productId,
+                productIdList: productIdList,
                 buyCount: this.data.buyCount,
                 userId: getApp().globalData.userId,
                 totalPrice: this.data.totalPrice,
@@ -82,24 +86,16 @@ Page({
      * @param options
      */
     loadProductToOrder(options) {
-        let productList = options.productList;
-        netUtils.get(apis.reserve_good_detail + "/" + productId).then((response) => {
-            let list = [];
-            list[0] = {
-                productName: response.data.productName,
-                productPrice: response.data.productPrice,
-                productId: response.data.productId,
-                marketPrice: response.data.marketPrice,
-                buyCount: buyCount,
-                imageUrl: response.data.imageUrl
-            };
-            let totalPrice = this.getSelectTotalPrice(list);
-            this.setData({
-                productList: list,
-                totalPrice: totalPrice,
-                buyCount: buyCount,
-                productId: productId
-            })
+        let productList = JSON.parse(decodeURIComponent(options.productList));
+        if (productList === null || productList === undefined) {
+            return
+        }
+        let totalCount = 0;
+        let totalPrice = this.getSelectTotalPrice(productList);
+        this.setData({
+            productList: productList,
+            totalPrice: totalPrice,
+            buyCount: totalCount,
         })
     },
     /**
