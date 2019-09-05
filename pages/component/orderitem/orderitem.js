@@ -3,8 +3,7 @@ const apis = getApp().apis;
 const netUtils = getApp().netUtils;
 Component({
     lifetimes: {
-
-        ready: function () {
+        attached: function () {
             this.loadOrderList();
         }
     },
@@ -23,16 +22,6 @@ Component({
      */
     data: {
         orderList: [
-            {
-                orderTime: "ddssdsd",
-                name: "item.orderTime",
-                totalPrice: "item.totalPrice",
-                leaveMessage: 'item.leaveMessage',
-                orderStatus: "item.orderStatus",
-                userId: "item.userId",
-                productImageList: ["https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2121206715,2955288754&fm=26&gp=0.jpg", "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2121206715,2955288754&fm=26&gp=0.jpg", "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2121206715,2955288754&fm=26&gp=0.jpg", "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2121206715,2955288754&fm=26&gp=0.jpg"],
-
-            }
         ]
     },
 
@@ -59,21 +48,22 @@ Component({
                 if (response.data === undefined) {
                     return
                 }
-                let orderProductList = response.data.filter((item) => {
+                let orderProductList = response.data.map((item) => {
                         if (item !== undefined) {
+                            let orderStatusName = this.getOrderStatusName();
+                            let imageUrlList = this.getImageList(item.orderProductItemDetailList)
                             return {
                                 orderTime: item.orderTime,
-                                orderStatusName: item.orderTime,
+                                orderStatusName: orderStatusName,
                                 totalPrice: item.totalPrice,
                                 leaveMessage: item.leaveMessage,
                                 orderStatus: item.orderStatus,
                                 userId: item.userId,
-                                productImageList: ["", "", ""]
+                                imageUrlList: imageUrlList
                             }
                         }
                     }
                 );
-                console.log("ddd" + orderProductList[0])
                 this.setData({
                     orderList: orderProductList
                 });
@@ -81,10 +71,13 @@ Component({
 
         },
         getImageList(orderProductList) {
-            orderProductList.map((item) => {
-                console.log("看书" + item);
-                return "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2121206715,2955288754&fm=26&gp=0.jpg"
+            let imageUrlList = [];
+            orderProductList.forEach((item,index) => {
+                if (item.productDetail !== undefined && item.productDetail.imageUrl !== undefined) {
+                    imageUrlList.push(item.productDetail.imageUrl);
+                }
             })
+            return imageUrlList;
         }
     },
 

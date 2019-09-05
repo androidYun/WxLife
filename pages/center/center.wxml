@@ -13,26 +13,26 @@
         </view>
 
         <view class="order_type_body">
-            <view class="order_type">
+            <view class="order_type" bindtap="goOrderDetail" data-active="0">
                 <van-icon name="pending-payment"/>
-                <span>待支付</span>
+                <span>新订单</span>
             </view>
-            <view class="order_type">
+            <view class="order_type" bindtap="goOrderDetail" data-active="1">
                 <van-icon name="pending-payment"/>
                 <span>代发货</span>
             </view>
-            <view class="order_type">
+            <view class="order_type" bindtap="goOrderDetail" data-active="2">
                 <van-icon name="pending-payment"/>
-                <span>待收货</span>
+                <span>已完成</span>
             </view>
-            <view class="order_type">
+            <view class="order_type" bindtap="goOrderDetail" data-active="3">
                 <van-icon name="pending-payment"/>
-                <span>待评价</span>
+                <span>已取消</span>
             </view>
         </view>
     </view>
     <van-cell-group>
-        <van-cell title="预购订单" icon="orders-o" is-link url="/pages/set/set"/>
+        <van-cell title="预购订单" wx:if="{{false}}" icon="orders-o" is-link url="/pages/set/set"/>
         <van-cell title="地址管理" icon="location-o" is-link url="/pages/address/address"/>
     </van-cell-group>
 </view>

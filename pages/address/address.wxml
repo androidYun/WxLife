@@ -1,28 +1,33 @@
 <!--pages/address/address.wxml-->
 <view>
-    <van-button type="primary" size="large" bindtap="addAddress">添加地址</van-button>
-    <view wx:for="{{addressList}}" wx:key="index" wx:for-item="item">
-        <view class="address_body" bindtap="selectAddress" data-index="{{index}}">
-            <view class="user_inform">
-                <span>{{item.userName}}</span>
-                <span>{{item.phoneNumber}}</span>
-            </view>
-            <span class="address_content">收货地址:{{item.province}}{{item.city}}{{item.area}}{{item.defineAddress}}</span>
-            <span class="address_content" style="display:block">社区:{{item.communityName}}</span>
-            <view class="line"></view>
-            <view class="operation_view">
-                <van-checkbox checked-color="#41b357" value="{{item.isDefault}}" data-index="{{index}}" bind:change="defaultAddressChange" style="font-size:12px">默认地址
-                </van-checkbox>
-                <view>
-                    <van-button icon="edit" size="small" type="default" data-index="{{index}}" bindtap="editAddress">
-                        编辑
-                    </van-button>
-                    <van-button icon="delete" class="delete" type="danger" size="small" data-index="{{index}}"
-                                bindtap="deleteAddress">删除
-                    </van-button>
+    <view style="margin-bottom: 60px;">
+        <block wx:for="{{addressList}}" wx:key="index" wx:for-item="item">
+            <view class="address_body" bindtap="selectAddress" data-index="{{index}}">
+                <view class="user_inform">
+                    <span>{{item.userName}}</span>
+                    <span>{{item.phoneNumber}}</span>
                 </view>
-            </view>
+                <span class="address_content">收货地址:{{item.province}}{{item.city}}{{item.area}}{{item.defineAddress}}
+                </span>
+                <span class="address_content" style="display:block">社区:{{item.communityName}}</span>
+                <view class="line"></view>
+                <view class="operation_view">
+                    <van-checkbox checked-color="#41b357" value="{{item.default}}" data-index="{{index}}"
+                                  bind:change="defaultAddressChange" style="font-size:12px">默认地址
+                    </van-checkbox>
+                    <view>
+                        <van-button icon="edit" size="small" type="default" data-index="{{index}}"
+                                    bindtap="editAddress">
+                            编辑
+                        </van-button>
+                        <van-button icon="delete" class="delete" type="danger" size="small" data-index="{{index}}"
+                                    bindtap="deleteAddress">删除
+                        </van-button>
+                    </view>
+                </view>
 
-        </view>
+            </view>
+        </block>
     </view>
+    <van-button class="addAddress" type="primary" size="large" bindtap="addAddress">添加地址</van-button>
 </view>

@@ -13,17 +13,29 @@ Page({
         totalPrice: 963.56
     },
     onChangeTab: function (event) {
-        wx.showToast({
-            title: `切换到标签 ${event.detail.index + 1}`,
-            icon: 'none'
-        });
+        if (event.detail.index === 0) {
+            this.newOrder.loadOrderList();
+        } else if (event.detail.index === 1) {
+            this.waitDelivery.loadOrderList();
+        } else if (event.detail.index === 2) {
+            this.finishOrder.loadOrderList();
+        } else if (event.detail.index === 3) {
+            this.alreadyCancel.loadOrderList();
+        }
 
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        //通过id获取组件component
+        this.newOrder = this.selectComponent("#newOrder")
+        this.waitDelivery = this.selectComponent("#waitDelivery")
+        this.finishOrder = this.selectComponent("#finishOrder")
+        this.alreadyCancel = this.selectComponent("#alreadyCancel")
+        this.setData({
+            active: options.active
+        })
     },
 
     /**

@@ -6,29 +6,37 @@
     background-color: #FFFFFF;
 }
 
-.address_body .user_inform{
+.address_body .user_inform {
     display: flex;
     justify-content: space-between;
 }
-.address_body .address_content{
+
+.address_body .address_content {
     margin-top: 4px;
     color: #333333;
     font-size: 14px;
 }
-.address_body .line{
+
+.address_body .line {
     width: 100%;
     margin-top: 5px;
     height: 1px;
     background-color: #e7e7e7;
 }
 
-.address_body .operation_view{
+.address_body .operation_view {
     justify-content: space-between;
     align-items: center;
     display: flex;
     margin-top: 10px;
 }
 
-.address_body .operation_view .delete{
+.address_body .operation_view .delete {
     margin-left: 10px;
+}
+
+.addAddress {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
 }
