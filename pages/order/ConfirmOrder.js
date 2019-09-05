@@ -77,8 +77,7 @@ Page({
      * @param options
      */
     loadProductToOrder(options) {
-        let productId = options.productId;
-        let buyCount = options.buyCount;
+        let productList = options.productList;
         netUtils.get(apis.reserve_good_detail + "/" + productId).then((response) => {
             let list = [];
             list[0] = {

@@ -10,7 +10,8 @@
     "pages/set/set",
     "pages/address/address",
     "pages/address/add/add",
-    "pages/order/ConfirmOrder"
+    "pages/order/ConfirmOrder",
+    "pages/category/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -27,6 +28,12 @@
       {
         "pagePath": "pages/index/index",
         "text": "预定",
+        "iconPath": "images/ic_reserve_normal.png",
+        "selectedIconPath": "images/ic_reserve.png"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "text": "分类",
         "iconPath": "images/ic_reserve_normal.png",
         "selectedIconPath": "images/ic_reserve.png"
       },

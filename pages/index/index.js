@@ -65,8 +65,13 @@ Page({
                 Toast(error.msg);
             })
         } else {
+            let productList = [];
+            productList.push({
+                productId: productId,
+                buyCount: this.data.buyCount
+            })
             wx.navigateTo({
-                url: "../order/ConfirmOrder?addOrderType=" + 1 + "&buyCount=" + this.data.buyCount + "&productId=" + productId
+                url: "../order/ConfirmOrder?addOrderType=" + 1 + "&productList=" + productList
             })
         }
     },
