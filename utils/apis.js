@@ -1,4 +1,4 @@
-const base_url = "http://127.0.0.1:8084/api/";
+const base_url = "http://106.13.40.231:8084/api/";
 module.exports = {
     wx_login: base_url + "wx/login",//预购商品列表
     reserve_good_list: base_url + "reserve/list",//预购商品列表
