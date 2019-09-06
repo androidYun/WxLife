@@ -7,19 +7,22 @@ Page({
      * 页面的初始数据
      */
     data: {
-        userName: "李桂云",
-        phoneNumber: "13014688217",
-        address: "河南省郑州市书水榭花城46号楼1-1102",
+        userName: "",
+        phoneNumber: "",
+        address: "",
         leaveMessage: "",
         totalPrice: 0.0,
         productList: [],
         addOrderType: 0,//添加订单类型 0 是从购物车添加  1 从订单直接添加
         buyCount: 0,
-        addressId: 0
+        addressId: -1
     },
     submitOrder: function () {
         if (this.data.productList === 0 || this.data.productList === undefined) {
             return
+        }
+        if (this.addressId < 0) {
+            getApp().toast.fail("请选择地址");
         }
         let orderList = this.data.productList.map((item) => {
             return {
@@ -36,7 +39,7 @@ Page({
                 leaveMessage: this.data.leaveMessage
             }).then((response) => {
                 wx.redirectTo({
-                    url: "/pages/orderlist/orderlist?active=" + 0
+                    url: "/pages/orderlist/orderlist?active=" + 0 //0是新添加的
                 })
             })
         } else {
@@ -54,7 +57,7 @@ Page({
                 leaveMessage: this.data.leaveMessage
             }).then((response) => {
                 wx.redirectTo({
-                    url: "/pages/orderlist/orderlist?active=" + active
+                    url: "/pages/orderlist/orderlist?active=" + 0
                 })
             })
         }

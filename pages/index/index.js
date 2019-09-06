@@ -61,6 +61,7 @@ Page({
                     buyCount: 1,
                 });
                 this.loadReserveList();
+                getApp().toast.success('添加购物车成功');
             }).catch((error) => {
                 Toast(error.msg);
             })

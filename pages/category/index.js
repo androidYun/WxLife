@@ -1,4 +1,8 @@
 // pages/component/index.js
+import Toast from '../../lib/toast/toast';
+
+const apis = getApp().apis;
+const netUtils = getApp().netUtils;
 Page({
 
     /**
@@ -7,42 +11,10 @@ Page({
     data: {
         active: 0,
         selectCategoryIndex: 0,
-        totalPrice: 0,
         totalPrice: 0.0,
         categoryName: "水果",
-        categoryList: [{
-            categoryId: 1,
-            categoryName: "水果"
-        }, {
-            categoryId: 2,
-            categoryName: "坚果"
-        }, {
-            categoryId: 3,
-            categoryName: "蔬菜"
-        }, {
-            categoryId: 4,
-            categoryName: "花菜"
-        }, {
-            categoryId: 5,
-            categoryName: "吃饭"
-        }],
-        productList: [
-            {
-                productId: 26,
-                productName: "苹果",
-                productPrice: 56.0,
-                marketPrice: 65.0,
-                sellCount: 32,
-                imageUrl: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1487351610,315303232&fm=26&gp=0.jpg"
-            }, {
-                productId: 4,
-                productName: "苹果",
-                productPrice: 56.0,
-                marketPrice: 65.0,
-                sellCount: 32,
-                imageUrl: "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1487351610,315303232&fm=26&gp=0.jpg"
-            }
-        ],
+        categoryList: [],
+        productList: [],
         addProductList: []
     },
 
@@ -50,13 +22,33 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log("ddddd");
+        this.loadCategoryList();
+    },
+
+    loadCategoryList() {
+        netUtils.get(apis.product_category_list).then((response) => {
+            this.setData({
+                categoryList: response.data !== undefined ? response.data : []
+            });
+        })
+    },
+
+    loadProductList(categoryId) {
+        netUtils.get(apis.reserve_good_list, {
+            categoryId: categoryId
+        }).then((response) => {
+            this.setData({
+                productList: response.data !== undefined ? response.data : []
+            });
+        })
     },
 
     selectCategory: function (event) {
         let index = event.currentTarget.dataset.index;
+        this.loadProductList(this.data.categoryList[index].categoryId);
         this.setData({
-            selectCategoryIndex: index
+            selectCategoryIndex: index,
+            categoryName: this.data.categoryList[index].categoryName
         })
     },
     /*
@@ -96,6 +88,10 @@ Page({
 
     addProductOrder(event) {
         let productList = this.data.addProductList;
+        if (productList.length <= 0) {
+            getApp().toast.fail('请选择需要添加的商品');
+            return
+        }
         let orderModelJson = JSON.stringify(productList);
         wx.navigateTo({
             url: "../order/ConfirmOrder?addOrderType=" + 1 + "&productList=" + encodeURIComponent(orderModelJson)
@@ -111,7 +107,6 @@ Page({
                 };
             }
         }
-        console.log("tttt")
         return {
             isAlready: false,
             index: -1
@@ -128,7 +123,7 @@ Page({
         let totalCount = 0
         addProductList.forEach((product) => {
             totalCount += product.buyCount;
-        })
+        });
         return totalCount;
     },
     /**

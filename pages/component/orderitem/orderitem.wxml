@@ -21,18 +21,19 @@
         <span class="price">合计:¥{{item.totalPrice}}</span>
         <view>
             <view wx:if="{{item.orderStatus===0}}">
-                <van-button type="danger" size="mini">取消订单</van-button>
+                <van-button type="danger" size="mini" bindtap="cancelOrder" data-index="{{index}}">取消订单</van-button>
             </view>
             <view wx:elif="{{item.orderStatus===1}}">
-                <van-button type="danger" size="mini">申请取消</van-button>
+                <van-button type="danger" size="mini" bindtap="applyCancelOrder">申请取消</van-button>
             </view>
             <view wx:elif="{{item.orderStatus===2}}">
-                <van-button type="danger" size="mini">评价</van-button>
+                <van-button type="danger" size="mini" bindtap="comment">评价</van-button>
             </view>
             <view wx:elif="{{item.orderStatus===3}}">
-                <van-button type="danger" size="mini">删除订单</van-button>
+                <van-button type="danger" size="mini" bindtap="deleteOrder">删除订单</van-button>
             </view>
         </view>
     </view>
     <view class="view_line_5"></view>
+    <van-toast id="van-toast" />
 </view>

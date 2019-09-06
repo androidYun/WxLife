@@ -80,6 +80,7 @@
 
 .buy_count_total_price_add_order .buy_count_total_price {
     display: flex;
+    align-items: center;
 }
 
 .buy_count_total_price_add_order .buy_count_total_price .total_price {

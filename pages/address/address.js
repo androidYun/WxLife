@@ -1,4 +1,5 @@
 // pages/address/address.js
+const app = getApp();
 const apis = getApp().apis;
 const netUtils = getApp().netUtils;
 Page({
@@ -62,10 +63,10 @@ Page({
 
     },
     loadAddressList() {
-        netUtils.get(apis.address_list, {userId: 1}).then((response => {
+        netUtils.get(apis.address_list, {userId: app.globalData.userId}).then((response => {
             this.setData(
                 {
-                    addressList: response.data
+                    addressList: response.data ? response.data : []
                 }
             )
         }))

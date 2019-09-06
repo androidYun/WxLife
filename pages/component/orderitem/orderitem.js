@@ -1,6 +1,8 @@
 // component/orderitem.js
 const apis = getApp().apis;
 const netUtils = getApp().netUtils;
+import Toast from '../../../lib/toast/toast';
+
 Component({
     lifetimes: {
         attached: function () {
@@ -21,8 +23,7 @@ Component({
      * 组件的初始数据
      */
     data: {
-        orderList: [
-        ]
+        orderList: []
     },
 
     /**
@@ -53,6 +54,7 @@ Component({
                             let orderStatusName = this.getOrderStatusName();
                             let imageUrlList = this.getImageList(item.orderProductItemDetailList)
                             return {
+                                orderId: item.orderId,
                                 orderTime: item.orderTime,
                                 orderStatusName: orderStatusName,
                                 totalPrice: item.totalPrice,
@@ -72,12 +74,22 @@ Component({
         },
         getImageList(orderProductList) {
             let imageUrlList = [];
-            orderProductList.forEach((item,index) => {
+            orderProductList.forEach((item, index) => {
                 if (item.productDetail !== undefined && item.productDetail.imageUrl !== undefined) {
                     imageUrlList.push(item.productDetail.imageUrl);
                 }
             })
             return imageUrlList;
+        },
+        cancelOrder(event) {
+            let index = event.currentTarget.dataset.index;
+            let orderId = this.data.orderList[index].orderId;
+            netUtils.get(apis.cancel_order, {
+                orderId: orderId
+            }).then((response) => {
+                this.loadOrderList();
+                Toast("取消订单成功")
+            })
         }
     },
 

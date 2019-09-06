@@ -12,6 +12,7 @@ App({
         this.stringUtils = new stringUtils();
         this.apis = apis;
         this.netUtils = netUtils;
+        this.toast = Toast
         logs.unshift(Date.now());
         wx.setStorageSync('logs', logs);
 
@@ -23,7 +24,6 @@ App({
                 }).then((response) => {
                     storageUtils.setUserId(response.data.userId);
                     this.globalData.userId = response.data.userId;
-                    console.log("dddddd" + response.data.token)
                     storageUtils.setToken(response.data.token);
                 })
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -57,10 +57,10 @@ App({
     }
 });
 wx.switchTab({
-  url: "pages/index/index",
+    url: "pages/index/index",
     success(res) {
         let page = getCurrentPages().pop();
-        if(page === undefined || page === null) return;
+        if (page === undefined || page === null) return;
         page.onLoad(page.data.options);
     }
 });

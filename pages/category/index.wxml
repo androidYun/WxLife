@@ -1,7 +1,7 @@
 <!--pages/component/index.wxml-->
 <view>
     <van-row>
-        <van-col span="3">
+        <van-col span="4">
             <view wx:for="{{categoryList}}" wx:key="index" wx:item="item">
                 <view class="category_body" bindtap="selectCategory" data-index="{{index}}">
                     <view class="select_line" wx:if="{{index===selectCategoryIndex}}"></view>
@@ -9,12 +9,12 @@
                 </view>
             </view>
         </van-col>
-        <van-col span="21">
+        <van-col span="20">
             <span class="category_name">{{categoryName}}</span>
             <view wx:for="{{productList}}" wx:key="index" wx:item="item">
                 <view class="category_product_body">
                     <image class="product_image_url"
-                           src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1487351610,315303232&fm=26&gp=0.jpg"></image>
+                           src="{{item.imageUrl}}"></image>
                     <view class="product_detail">
                         <span class="product_name">{{item.productName}}</span>
                         <view class="price">
@@ -35,11 +35,11 @@
         <view class="buy_count_total_price">
             <view>
                 <van-icon name="cart-o" color="#41b357"></van-icon>
-                <span class="buy_count">{{totalCount}}</span>
+                <span class="buy_count" wx:if="{{totalCount>0}}">{{totalCount}}</span>
             </view>
             <span class="total_price">总计:{{totalPrice}}</span>
         </view>
         <button class="payment_btn" bindtap="addProductOrder">下单</button>
     </view>
-
+    <van-toast id="van-toast"/>
 </view>
