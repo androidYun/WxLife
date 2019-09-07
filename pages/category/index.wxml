@@ -22,7 +22,7 @@
                             <span class="market_price">¥{{item.productPrice}}</span>
                         </view>
                         <view class="sell_out_cart">
-                            <van-tag class="sell_out" plain type="success" size="mini">已售{{item.sellCount}}</van-tag>
+                            <van-tag class="sell_out" plain type="success" size="mini">已售{{item.sellOutCount}}</van-tag>
                             <van-stepper value="{{ 0 }}" min="0" integer disable-input data-index="{{index}}"
                                          bind:change="changeProductCount"/>
                         </view>

@@ -108,3 +108,39 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
+/*购物车数量图标*/
+.cart_count_icon {
+    background-color: #41b357;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    position: fixed;
+    display: flex;
+    bottom: 20px;
+    right: 20px;
+}
+
+.cart_count_icon .icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    right: 15px;
+
+}
+
+.cart_count_icon .cart_count {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    line-height: 16px;
+    border-radius: 10px;
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    text-align: center;
+    font-size: 10px;
+    color: #FFFFFF;
+    background-color: #FF3030;
+}

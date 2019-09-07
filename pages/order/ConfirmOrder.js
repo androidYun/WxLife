@@ -23,18 +23,21 @@ Page({
         }
         if (this.addressId < 0) {
             getApp().toast.fail("请选择地址");
+            return
         }
         let orderList = this.data.productList.map((item) => {
             return {
                 cartId: item.cartId,
                 productId: item.productId,
                 buyCount: item.buyCount,
+                productPrice: item.productPrice,
             }
         });
         if (this.data.addOrderType === 0) {
             netUtils.post(apis.order_add, {
                 cartList: orderList,
                 userId: getApp().globalData.userId,
+                addressId: this.data.addressId,
                 totalPrice: this.data.totalPrice,
                 leaveMessage: this.data.leaveMessage
             }).then((response) => {
@@ -46,7 +49,8 @@ Page({
             let productIdList = this.data.productList.map((item) => {
                 return {
                     productId: item.productId,
-                    buyCount: item.buyCount
+                    buyCount: item.buyCount,
+                    productPrice: item.productPrice,
                 };
             })
             netUtils.post(apis.order_add_good, {
@@ -54,6 +58,7 @@ Page({
                 buyCount: this.data.buyCount,
                 userId: getApp().globalData.userId,
                 totalPrice: this.data.totalPrice,
+                addressId: this.data.addressId,
                 leaveMessage: this.data.leaveMessage
             }).then((response) => {
                 wx.redirectTo({
@@ -152,6 +157,7 @@ Page({
             this.setData({
                 userName: response.data.userName,
                 phoneNumber: response.data.phoneNumber,
+                addressId:  response.data.addressId,
                 address: response.data.province + response.data.city + response.data.area + response.data.defineAddress,
             })
         })

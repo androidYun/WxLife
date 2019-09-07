@@ -40,9 +40,14 @@
 
         <view class="dialog_content">
             <span class="name">{{productName}}:</span>
-            <van-stepper class="buy_count" value="{{ 1 }}" bind:change="onChangeReserveCount"/>
+            <van-stepper class="buy_count" value="{{ buyCount }}" bind:change="onChangeReserveCount"/>
             <span>{{unitName}}</span>
         </view>
     </van-dialog>
     <van-toast id="van-toast"/>
+    <view class="cart_count_icon" bindtap="switchCart">
+        <span class="cart_count" wx:if="{{cartCount>0}}">{{cartCount}}</span>
+        <van-icon name="cart-o" class="icon"></van-icon>
+
+    </view>
 </view>

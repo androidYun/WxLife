@@ -1,4 +1,4 @@
-const base_url = "http://106.13.40.231:8084/api/";
+const base_url = "http://127.0.0.1:8084/api/";
 module.exports = {
     wx_login: base_url + "wx/login",//预购商品列表
     reserve_good_list: base_url + "product/list",//预购商品列表
@@ -15,6 +15,7 @@ module.exports = {
     reserve_cart_update: base_url + "cart/update",//更新
     reserve_cart_update_count: base_url + "cart/updateCount",//更新数量
     cart_product_list: base_url + "cart/cartProductList",//购物车商品列表
+    cart_total_count: base_url + "cart/count",//购物车数量
     /*地址接口*/
     load_default_address: base_url + "address/default",//默认地址
     address_add: base_url + "address/add",//添加地址

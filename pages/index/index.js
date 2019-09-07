@@ -17,12 +17,15 @@ Page({
         index: 0,
         submitType: 0, //0是添加购物车  1 是添加订单
         reserveList: [],
+        cartCount: 0
     },
-    //事件处理函数
+    //添加预定
     submitOrder: function (event) {
         let index = event.currentTarget.dataset.index;
+        let buyCount = this.data.reserveList[index].buyCount;
         this.setData({
             submitType: 1,
+            buyCount: buyCount,
             show: true,
             index: index,
             productName: this.data.reserveList[index].productName,
@@ -31,11 +34,13 @@ Page({
         });
 
     },
-    //事件处理函数
+    //添加购物车
     submitCart: function (event) {
         let index = event.currentTarget.dataset.index;
+        let buyCount = this.data.reserveList[index].buyCount;
         this.setData({
             submitType: 0,
+            buyCount: buyCount,
             show: true,
             index: index,
             productName: this.data.reserveList[index].productName,
@@ -49,16 +54,17 @@ Page({
     },
     /*提交数量*/
     submitGood: function (event) {
-        let index = this.data.index;
+        let index = this.data.index
         let productDetail = this.data.reserveList[index];
         if (this.data.submitType === 0) {
             netUtils.post(apis.reserve_cart_add, {
                 userId: getApp().globalData.userId,
                 productId: productDetail.productId,
-                cartCount: this.data.buyCount,
+                cartCount: productDetail.buyCount,
             }).then((response) => {
                 this.setData({
                     buyCount: 1,
+                    cartCount: this.data.cartCount + productDetail.buyCount
                 });
                 this.loadReserveList();
                 getApp().toast.success('添加购物车成功');
@@ -69,21 +75,33 @@ Page({
             let productList = [];
             productList.push({
                 productId: productDetail.productId,
-                buyCount: this.data.buyCount,
+                buyCount: productDetail.buyCount,
                 productName: productDetail.productName,
                 productPrice: productDetail.productPrice,
                 marketPrice: productDetail.marketPrice,
                 imageUrl: productDetail.imageUrl
             })
+            this.loadReserveList();
             let orderModelJson = JSON.stringify(productList);
             wx.navigateTo({
                 url: "../order/ConfirmOrder?addOrderType=" + 1 + "&productList=" + encodeURIComponent(orderModelJson)
             })
         }
     },
+    //切换到购物车
+    switchCart(event) {
+        if (this.data.cartCount > 0) {
+            wx.switchTab({
+                url: "/pages/cart/cart"
+            });
+        }
+    },
     onChangeReserveCount(event) {
+        let index = this.data.index;
+        let list = this.data.reserveList;
+        list[index].buyCount = event.detail
         this.setData({
-            buyCount: event.detail
+            reserveList: list
         });
     },
     onChange(event) {
@@ -124,6 +142,14 @@ Page({
             })
         }
         this.loadReserveList();
+        this.loadCartCount();
+    },
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+        this.loadReserveList();
+        this.loadCartCount();
     },
     getUserInfo: function (e) {
         app.globalData.userInfo = e.detail.userInfo;
@@ -132,10 +158,39 @@ Page({
             hasUserInfo: true
         })
     },
+    /**
+     * 加载购物车中的数量
+     */
+    loadCartCount() {
+        netUtils.get(apis.cart_total_count, {
+            userId: getApp().globalData.userId
+        }).then((response) => {
+            this.setData({
+                cartCount: response.data !== undefined ? response.data : 0
+            })
+        })
+    },
     loadReserveList() {
         netUtils.get(apis.reserve_good_list, {}).then((response) => {
+            if (response.data === undefined) {
+                return
+            }
+            let list = response.data.map((item) => {
+                return {
+                    productId: item.productId,
+                    productName: item.productName,
+                    productPrice: item.productPrice,
+                    imageUrl: item.imageUrl,
+                    marketPrice: item.marketPrice,
+                    sellOutCount: item.sellOutCount,
+                    productFinishTime: item.productFinishTime,
+                    unit: item.unit,
+                    address: item.address,
+                    buyCount: 1,
+                }
+            })
             this.setData({
-                reserveList: response.data
+                reserveList: list,
             })
             this.hideLoading();
         }).catch((error) => {

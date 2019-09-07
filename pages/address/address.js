@@ -69,7 +69,10 @@ Page({
                     addressList: response.data ? response.data : []
                 }
             )
-        }))
+            this.hideLoading();
+        })).catch((error) => {
+            this.hideLoading();
+        })
     },
     /**
      * 生命周期函数--监听页面加载
@@ -110,7 +113,7 @@ Page({
      * 页面相关事件处理函数--监听用户下拉动作
      */
     onPullDownRefresh: function () {
-
+        this.loadAddressList();
     },
 
     /**
@@ -125,5 +128,11 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    hideLoading: function () {
+        // 隐藏导航栏加载框
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作
+        wx.stopPullDownRefresh();
     }
 })
